@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 class LRUCache {
 
     class Node {
@@ -19,7 +21,7 @@ class LRUCache {
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        map = new HashMap<>();
+        this.map = new HashMap<>();
 
         // Dummy nodes
         head = new Node(0, 0);
@@ -30,13 +32,14 @@ class LRUCache {
     }
 
     public int get(int key) {
+
         if (!map.containsKey(key)) {
             return -1;
         }
 
         Node node = map.get(key);
 
-        // Move accessed node to front
+        // Recently accessed -> move to front
         remove(node);
         addFirst(node);
 
@@ -45,27 +48,34 @@ class LRUCache {
 
     public void put(int key, int value) {
 
-        // If key already exists
+        // Key already exists
         if (map.containsKey(key)) {
+
             Node node = map.get(key);
+
             node.value = value;
 
+            // Updated key becomes most recently used
             remove(node);
             addFirst(node);
-        } 
-        else {
-            Node node = new Node(key, value);
 
-            map.put(key, node);
-            addFirst(node);
+            return;
+        }
 
-            // Remove least recently used
-            if (map.size() > capacity) {
-                Node lru = tail.prev;
+        // Create new node
+        Node node = new Node(key, value);
 
-                remove(lru);
-                map.remove(lru.key);
-            }
+        map.put(key, node);
+        addFirst(node);
+
+        // Capacity exceeded
+        if (map.size() > capacity) {
+
+            // Least recently used node
+            Node lru = tail.prev;
+
+            remove(lru);
+            map.remove(lru.key);
         }
     }
 
@@ -75,8 +85,9 @@ class LRUCache {
         node.next.prev = node.prev;
     }
 
-    // Add node right after head
+    // Add node immediately after head
     private void addFirst(Node node) {
+
         node.next = head.next;
         node.prev = head;
 
