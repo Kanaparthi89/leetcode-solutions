@@ -2,7 +2,7 @@
 
 **Difficulty:** Medium
 
-**Tags:** Array, Sorting
+**Tags:** Array, Sorting, Quicksort
 
 **Link:** https://leetcode.com/problems/merge-intervals/
 
