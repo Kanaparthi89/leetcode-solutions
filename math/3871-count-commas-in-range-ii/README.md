@@ -1,0 +1,51 @@
+# 3871. Count Commas in Range II
+
+**Difficulty:** Medium
+
+**Tags:** Math
+
+**Link:** https://leetcode.com/problems/count-commas-in-range-ii/
+
+---
+
+You are given an integer n.
+
+Return the total number of commas used when writing all integers from [1, n] (inclusive) in standard number formatting.
+
+In standard formatting:
+
+
+	A comma is inserted after every three digits from the right.
+	Numbers with fewer than 4 digits contain no commas.
+
+
+&nbsp;
+Example 1:
+
+
+Input: n = 1002
+
+Output: 3
+
+Explanation:
+
+The numbers &quot;1,000&quot;, &quot;1,001&quot;, and &quot;1,002&quot; each contain one comma, giving a total of 3.
+
+
+Example 2:
+
+
+Input: n = 998
+
+Output: 0
+
+Explanation:
+
+​​​​​​​All numbers from 1 to 998 have fewer than four digits. Therefore, no commas are used.
+
+
+&nbsp;
+Constraints:
+
+
+	1 &lt;= n &lt;= 1015
